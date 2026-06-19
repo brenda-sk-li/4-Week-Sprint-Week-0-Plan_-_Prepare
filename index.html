@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 0: Plan & Prepare — 4-Week Sprint</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;900&family=Lato:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg:       #2E2A4F;
+            --bg-card:  #3A3560;
+            --bg-deep:  #231F3E;
+            --gold:     #E6C748;
+            --blue:     #0144AC;
+            --teal:     #81C7A5;
+            --white:    #FFFFFF;
+            --muted:    #C8C4E0;
+            --danger:   #E87070;
+            --orange:   #C44D00;
+            --font-h:   'Montserrat', sans-serif;
+            --font-b:   'Lato', sans-serif;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--white);
+            font-family: var(--font-b);
+            font-size: 18px;
+            line-height: 1.7;
+        }
+
+        /* ── HERO ── */
+        .hero {
+            background: linear-gradient(135deg, #231F3E 0%, #2E2A4F 50%, #1A3A6E 100%);
+            padding: 72px 24px 56px;
+            text-align: center;
+            border-bottom: 3px solid var(--gold);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 70% 30%, rgba(129,199,165,0.07) 0%, transparent 55%),
+                        radial-gradient(ellipse at 20% 80%, rgba(230,199,72,0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        .hero-tag {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--bg-deep);
+            font-family: var(--font-h);
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 6px 18px;
+            border-radius: 100px;
+            margin-bottom: 24px;
+        }
+        .hero h1 {
+            font-family: var(--font-h);
+            font-size: clamp(2.4rem, 6vw, 4rem);
+            font-weight: 900;
+            line-height: 1.15;
+            color: var(--white);
+            margin-bottom: 12px;
+        }
+        .hero h1 span { color: var(--gold); }
+        .hero-sub {
+            font-family: var(--font-b);
+            font-size: clamp(1.05rem, 2.5vw, 1.25rem);
+            color: var(--muted);
+            max-width: 680px;
+            margin: 0 auto 32px;
+            line-height: 1.8;
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(129,199,165,0.12);
+            border: 1.5px solid var(--teal);
+            border-radius: 12px;
+            padding: 14px 28px;
+            font-family: var(--font-h);
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--teal);
+        }
+
+        /* ── LAYOUT ── */
+        .container {
+            max-width: 1040px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        section { padding: 64px 32px; }
+        section:nth-child(even) { background: var(--bg-deep); }
+
+        .section-label {
+            font-family: var(--font-h);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 12px;
+        }
+        .section-title {
+            font-family: var(--font-h);
+            font-size: clamp(1.6rem, 4vw, 2.2rem);
+            font-weight: 900;
+            color: var(--white);
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+        .section-intro {
+            font-size: 1.1rem;
+            color: var(--muted);
+            max-width: 100%;
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+
+        /* ── TACT TEAM ROLES ── */
+        .tact-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        .tact-card {
+            background: var(--bg-card);
+            border-radius: 14px;
+            padding: 28px 22px;
+            border-top: 4px solid var(--gold);
+            display: flex;
+            flex-direction: column;
+        }
+        .tact-card.teal { border-top-color: var(--teal); }
+        .tact-card.blue { border-top-color: #4A90D9; }
+        .tact-card.orange { border-top-color: var(--orange); }
+
+        .tact-icon { font-size: 1.8rem; margin-bottom: 12px; }
+        .tact-role {
+            font-family: var(--font-h);
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+        .tact-card:nth-child(1) .tact-role { color: var(--gold); }
+        .tact-card:nth-child(2) .tact-role { color: var(--teal); }
+        .tact-card:nth-child(3) .tact-role { color: #4A90D9; }
+        .tact-card:nth-child(4) .tact-role { color: var(--orange); }
+
+        .tact-name {
+            font-family: var(--font-h);
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 10px;
+        }
+        .tact-body {
+            font-size: 0.95rem;
+            color: var(--muted);
+            line-height: 1.7;
+            flex: 1;
+        }
+
+        /* ── TWO LANES ── */
+        .lanes-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+        }
+        .lane-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 36px 32px;
+        }
+        .lane-card.recommended { border: 2px solid var(--teal); }
+        .lane-card.required    { border: 2px solid var(--gold); }
+
+        .lane-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+        .lane-badge {
+            font-family: var(--font-h);
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 5px 14px;
+            border-radius: 100px;
+        }
+        .lane-card.recommended .lane-badge { background: rgba(129,199,165,0.2); color: var(--teal); }
+        .lane-card.required    .lane-badge { background: rgba(230,199,72,0.2); color: var(--gold); }
+
+        .lane-title {
+            font-family: var(--font-h);
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--white);
+        }
+        .lane-sub {
+            font-size: 0.95rem;
+            color: var(--muted);
+            margin-bottom: 20px;
+            font-style: italic;
+            line-height: 1.6;
+        }
+        .lane-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .lane-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 1rem;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+        .lane-bullet {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-top: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--bg-deep);
+        }
+        .lane-card.recommended .lane-bullet { background: var(--teal); }
+        .lane-card.required    .lane-bullet { background: var(--gold); }
+        .lane-list li strong { color: var(--white); }
+
+        /* ── INTENT QUESTIONS GRID ── */
+        .intent-intro {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 36px;
+        }
+        .intent-stage-label {
+            font-family: var(--font-h);
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 8px 0;
+            border-bottom: 2px solid;
+            margin-bottom: 16px;
+        }
+        .stage-define .intent-stage-label  { color: var(--orange); border-color: var(--orange); }
+        .stage-design .intent-stage-label  { color: #4A90D9; border-color: #4A90D9; }
+
+        /* Stage 1 — 3x3 grid */
+        .define-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+        /* Stage 2 — 2+1+1 layout */
+        .design-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+        .design-grid .intent-box.intent-output {
+            grid-column: 1 / -1;
+        }
+
+        .intent-box {
+            background: var(--orange);
+            border-radius: 12px;
+            padding: 18px 16px;
+            position: relative;
+        }
+        .intent-box.design-box { background: #0144AC; }
+        .intent-box.intent-output {
+            background: var(--bg-deep);
+            border: 2px solid var(--gold);
+        }
+
+        .intent-num {
+            font-family: var(--font-h);
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 6px;
+        }
+        .intent-q {
+            font-family: var(--font-h);
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1.3;
+            margin-bottom: 4px;
+        }
+        .intent-hint {
+            font-size: 0.78rem;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.4;
+        }
+
+        /* Waste badge on 2B */
+        .waste-badge {
+            display: inline-block;
+            background: rgba(232,112,112,0.9);
+            color: var(--white);
+            font-family: var(--font-h);
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            padding: 3px 8px;
+            border-radius: 6px;
+            margin-top: 6px;
+        }
+
+        /* INTENT output box */
+        .intent-output .intent-num { color: var(--gold); }
+        .intent-output .intent-q {
+            font-size: 0.95rem;
+            color: var(--white);
+        }
+        .intent-output-badge {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--bg-deep);
+            font-family: var(--font-h);
+            font-size: 0.72rem;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            border-radius: 100px;
+            margin-top: 8px;
+        }
+
+        /* ── GIGO WARNING BANNER ── */
+        .gigo-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 16px;
+        }
+        .gigo-card {
+            border-radius: 16px;
+            padding: 36px 32px;
+            position: relative;
+            overflow: hidden;
+        }
+        .gigo-card.intent-warn {
+            background: linear-gradient(135deg, #1A1040, #231F3E);
+            border: 2px solid var(--gold);
+        }
+        .gigo-card.garbage-warn {
+            background: linear-gradient(135deg, #3D1515, #2A1010);
+            border: 2px solid var(--danger);
+        }
+        .gigo-warn-icon {
+            font-size: 2.2rem;
+            margin-bottom: 14px;
+            display: block;
+        }
+        .gigo-warn-title {
+            font-family: var(--font-h);
+            font-size: 1.3rem;
+            font-weight: 900;
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+        .gigo-card.intent-warn  .gigo-warn-title { color: var(--gold); }
+        .gigo-card.garbage-warn .gigo-warn-title { color: var(--danger); }
+
+        .gigo-warn-body {
+            font-size: 1rem;
+            line-height: 1.75;
+            color: var(--muted);
+        }
+        .gigo-warn-body strong { color: var(--white); }
+
+        .gigo-connector {
+            text-align: center;
+            font-family: var(--font-h);
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--muted);
+            padding: 16px 0 0;
+            font-style: italic;
+        }
+
+        /* ── GATE BOX ── */
+        .gate-box {
+            background: linear-gradient(135deg, #1A3A6E, #231F3E);
+            border: 2px solid var(--gold);
+            border-radius: 16px;
+            padding: 36px 40px;
+            text-align: center;
+            margin-top: 48px;
+        }
+        .gate-icon { font-size: 2.5rem; margin-bottom: 12px; }
+        .gate-title {
+            font-family: var(--font-h);
+            font-size: 1.3rem;
+            font-weight: 900;
+            color: var(--gold);
+            margin-bottom: 12px;
+        }
+        .gate-body {
+            font-size: 1.05rem;
+            color: var(--muted);
+            margin-bottom: 20px;
+            line-height: 1.75;
+            max-width: 100%;
+        }
+        .gate-rule {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--bg-deep);
+            font-family: var(--font-h);
+            font-size: 1rem;
+            font-weight: 900;
+            padding: 12px 32px;
+            border-radius: 100px;
+            letter-spacing: 1px;
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            background: var(--bg-deep);
+            border-top: 2px solid rgba(230,199,72,0.3);
+            padding: 28px 24px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+        footer strong { color: var(--gold); }
+
+        /* ── SCROLL TOP ── */
+        .scroll-top {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: var(--gold);
+            color: var(--bg-deep);
+            border: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+            z-index: 100;
+        }
+    </style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+    <div class="hero-tag">4-Week Sprint Program</div>
+    <h1>Week 0: <span>Plan & Prepare</span></h1>
+    <p class="hero-sub">Before the sprint begins, your team does the work.<br><br>No facilitator. No hand-holding. This is yours to own.</p>
+    <div class="hero-badge">📋 Self-Serve Preparation &nbsp;·&nbsp; TACT Team Owned</div>
+</div>
+
+<!-- SECTION 1 — TACT TEAM -->
+<section>
+    <div class="container">
+        <div class="section-label">Your Team</div>
+        <h2 class="section-title">Assemble Your TACT Team</h2>
+        <p class="section-intro">Every sprint requires four roles. Each role has a distinct responsibility. All four must be confirmed and all members must be confident using AI before the sprint proceeds.</p>
+
+        <div class="tact-grid">
+            <div class="tact-card">
+                <div class="tact-icon">🎯</div>
+                <div class="tact-role">Sponsor</div>
+                <div class="tact-name">The Accountable Leader</div>
+                <div class="tact-body">Ensures the project succeeds. Monitors progress, removes blockers, and holds the team accountable. If tasks stall, the Sponsor pushes them through. Success or failure lands here.</div>
+            </div>
+            <div class="tact-card teal">
+                <div class="tact-icon">⚙️</div>
+                <div class="tact-role">Super User</div>
+                <div class="tact-name">The Agent Boss</div>
+                <div class="tact-body">Owns the assistant end-to-end. Drives the build, coordinates SMEs and Change Agents, and is responsible for all downstream maintenance. This person is the bot's permanent home.</div>
+            </div>
+            <div class="tact-card blue">
+                <div class="tact-icon">🧠</div>
+                <div class="tact-role">SMEs</div>
+                <div class="tact-name">The Validators</div>
+                <div class="tact-body">Confirm the logic makes sense during the build. After the build, they test, document what they like and dislike, and capture detailed findings for the Super User to act on in the Improve session.</div>
+            </div>
+            <div class="tact-card orange">
+                <div class="tact-icon">🚀</div>
+                <div class="tact-role">Change Agents</div>
+                <div class="tact-name">The Champions</div>
+                <div class="tact-body">Test after SMEs and the Super User agree on release. Mirror SME testing from an end-user perspective. Own staff training and lead adoption across the broader team.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SECTION 2 — TWO LANES -->
+<section>
+    <div class="container">
+        <div class="section-label">How Week 0 Works</div>
+        <h2 class="section-title">Two Lanes. One Gate.</h2>
+        <p class="section-intro">Week 0 has two types of work. Only one of them is a gate. Complete both — but understand which one controls whether you proceed.</p>
+
+        <div class="lanes-grid">
+            <div class="lane-card recommended">
+                <div class="lane-header">
+                    <div class="lane-badge">Recommended</div>
+                    <div class="lane-title">Do This Before Week 1</div>
+                </div>
+                <div class="lane-sub">Not a gate — but shows up in Week 1. Teams who skip this arrive unprepared and it shows.</div>
+                <ul class="lane-list">
+                    <li><span class="lane-bullet">→</span><span>Explore AI prompt design basics — understand how to give an AI clear, structured instructions before you sit down to build</span></li>
+                    <li><span class="lane-bullet">→</span><span>Study workflow mapping fundamentals — know how to document a process step by step so nothing implicit gets lost when AI takes over</span></li>
+                    <li><span class="lane-bullet">→</span><span>All TACT team members confident using AI before the session begins</span></li>
+                </ul>
+            </div>
+
+            <div class="lane-card required">
+                <div class="lane-header">
+                    <div class="lane-badge">Must Complete</div>
+                    <div class="lane-title">Required Before You Proceed</div>
+                </div>
+                <div class="lane-sub">These are the gate items. Missing any one of them means Week 1 does not get scheduled.</div>
+                <ul class="lane-list">
+                    <li><span class="lane-bullet">✓</span><span><strong>TACT team assembled</strong> — all four roles confirmed</span></li>
+                    <li><span class="lane-bullet">✓</span><span><strong>Internal working session held</strong> — all intent questions answered as a team</span></li>
+                    <li><span class="lane-bullet">✓</span><span><strong>Data identified and cleaned</strong> — AI-readable, no gaps, no locked files</span></li>
+                    <li><span class="lane-bullet">✓</span><span><strong>Current workflow documented</strong> — every step, every decision made visible</span></li>
+                    <li><span class="lane-bullet">✓</span><span><strong>All deliverables shared</strong> — visible and accessible before Week 1 is confirmed</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SECTION 3 — INTENT QUESTIONS -->
+<section>
+    <div class="container">
+        <div class="section-label">The Intent Questions</div>
+        <h2 class="section-title">Answer These Before Week 1</h2>
+        <p class="section-intro">These questions are not a form to fill in. They are a thinking exercise your TACT team works through together — without a facilitator in the room. Your answers become the foundation of the entire build. Week 1 is where you present them. The build begins in Week 2.</p>
+
+        <!-- Stage 1 — Define -->
+        <div style="margin-bottom: 36px;">
+            <div class="intent-stage-label stage-define" style="font-family:'Montserrat',sans-serif;font-size:0.85rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--orange);border-bottom:2px solid var(--orange);padding-bottom:8px;margin-bottom:16px;">Stage 1 — Define</div>
+            <div class="define-grid">
+                <div class="intent-box">
+                    <div class="intent-num">#1A</div>
+                    <div class="intent-q">What is the problem?</div>
+                </div>
+                <div class="intent-box">
+                    <div class="intent-num">#1B</div>
+                    <div class="intent-q">What are the objectives?</div>
+                </div>
+                <div class="intent-box">
+                    <div class="intent-num">#1C</div>
+                    <div class="intent-q">What is the scope?</div>
+                </div>
+                <div class="intent-box">
+                    <div class="intent-num">#1D</div>
+                    <div class="intent-q">What are the deliverables?</div>
+                    <div class="intent-hint">Think functions</div>
+                </div>
+                <div class="intent-box">
+                    <div class="intent-num">#1E</div>
+                    <div class="intent-q">Who are the users?</div>
+                    <div class="intent-hint">Stakeholders · WIIFM · Champions · Resistors</div>
+                </div>
+                <div class="intent-box">
+                    <div class="intent-num">#1F</div>
+                    <div class="intent-q">What are the impacts & success criteria?</div>
+                    <div class="intent-hint">Technical · Functional · Adoption at 30 days</div>
+                </div>
+                <div class="intent-box">
+                    <div class="intent-num">#1G</div>
+                    <div class="intent-q">What are the risks?</div>
+                    <div class="intent-hint">Technical · Resistance · Low Adoption · Workarounds</div>
+                </div>
+                <div class="intent-box">
+                    <div class="intent-num">#1H</div>
+                    <div class="intent-q">What are the resources?</div>
+                    <div class="intent-hint">Think time and testers</div>
+                </div>
+                <div class="intent-box">
+                    <div class="intent-num">#1I</div>
+                    <div class="intent-q">What are the tools' capabilities & limitations?</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stage 2 — Design -->
+        <div>
+            <div class="intent-stage-label stage-design" style="font-family:'Montserrat',sans-serif;font-size:0.85rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#4A90D9;border-bottom:2px solid #4A90D9;padding-bottom:8px;margin-bottom:16px;">Stage 2 — Design</div>
+            <div class="design-grid">
+                <div class="intent-box design-box">
+                    <div class="intent-num">#2A</div>
+                    <div class="intent-q">What is the current workflow?</div>
+                    <div class="intent-hint">Every step, every decision — nothing implicit</div>
+                </div>
+                <div class="intent-box design-box">
+                    <div class="intent-num">#2B</div>
+                    <div class="intent-q">What is the future workflow?</div>
+                    <div class="intent-hint">Redesigned for AI — not the same flow</div>
+                    <span class="waste-badge">⚠ REDESIGN — Don't Digitize Waste</span>
+                </div>
+                <div class="intent-box design-box">
+                    <div class="intent-num">#2C</div>
+                    <div class="intent-q">Do we have cleaned data for AI processing?</div>
+                </div>
+                <div class="intent-box design-box">
+                    <div class="intent-num">#3</div>
+                    <div class="intent-q">Which steps are for AI — or AI + Human collaboration?</div>
+                </div>
+                <div class="intent-box intent-output">
+                    <div class="intent-num">OUTPUT</div>
+                    <div class="intent-q">Your answers to all questions above produce one thing: INTENT.</div>
+                    <div class="intent-hint" style="color:var(--muted);">INTENT is the foundation of the build. Without it, the bot solves the wrong problem — perfectly.</div>
+                    <span class="intent-output-badge">→ INTENT</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SECTION 4 — GIGO WARNING -->
+<section>
+    <div class="container">
+        <div class="section-label">Before You Proceed</div>
+        <h2 class="section-title">Two Reasons AI Projects Fail Before They Begin</h2>
+        <p class="section-intro">These are not edge cases. They are the most common failure modes — and both happen before a single line of prompt is written.</p>
+
+        <div class="gigo-grid">
+            <div class="gigo-card intent-warn">
+                <span class="gigo-warn-icon">🎯</span>
+                <div class="gigo-warn-title">No INTENT = No Build</div>
+                <div class="gigo-warn-body">
+                    A bot without direction doesn't fail slowly. <strong>It succeeds at solving the wrong problem — at full speed.</strong><br><br>
+                    If your team cannot answer what problem you are solving, who it serves, what success looks like, and which steps belong to AI — you are not ready. Going into Week 1 without INTENT wastes everyone's time and produces a bot nobody uses.
+                </div>
+            </div>
+            <div class="gigo-card garbage-warn">
+                <span class="gigo-warn-icon">🗑️</span>
+                <div class="gigo-warn-title">Garbage In = Garbage Out — at Scale</div>
+                <div class="gigo-warn-body">
+                    AI does not fix bad data or broken workflows. <strong>It replicates them — faster than any human ever could.</strong><br><br>
+                    Unclean data produces confidently wrong outputs. A broken workflow redesigned around AI is still a broken workflow — now automated. Every error your current process makes, the bot will make — consistently, at volume, without apology.
+                </div>
+            </div>
+        </div>
+        <div class="gigo-connector">These are the two things Week 0 exists to prevent.</div>
+
+        <div class="gate-box">
+            <div class="gate-icon">🎲</div>
+            <div class="gate-title">Do Not Pass GO</div>
+            <div class="gate-body">In Monopoly, you don't collect $200 if you don't pass GO. Same rule here. All Week 0 deliverables must be complete and accessible before Week 1 is confirmed. A team that arrives at Week 1 without answers, without clean data, and without a documented workflow is not ready — and Week 1 does not happen.</div>
+            <div class="gate-rule">⛔ INCOMPLETE WEEK 0 = DO NOT PROCEED</div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <strong>Week 0: Plan & Prepare</strong> &nbsp;·&nbsp; 4-Week Sprint Program &nbsp;·&nbsp; Brenda Li &nbsp;·&nbsp; 2026
+</footer>
+
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+    const btn = document.getElementById('scrollTop');
+    window.addEventListener('scroll', () => {
+        btn.style.display = window.scrollY > 300 ? 'flex' : 'none';
+    });
+</script>
+
+</body>
+</html>
